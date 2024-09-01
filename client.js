@@ -3,7 +3,7 @@ const socket = io();
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
 
-let currentPlayer = 'player1'; // Defina isso com base na lógica do jogo ou inicialização
+let currentPlayer = 'player1'; // Inicialize com o jogador atual
 
 function movePlayer(player, x, y) {
     player.style.left = `${x}px`;
