@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Avatar Movement</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .player {
+            position: absolute;
+            width: 50px; /* Tamanho do avatar */
+            height: 50px; /* Tamanho do avatar */
+            background-size: cover;
+            background-position: center;
+        }
+
+        #player1 {
+            background-image: url('ela1.jpeg');
+        }
+
+        #player2 {
+            background-image: url('ela1.jpeg');
+        }
+    </style>
+</head>
+<body>
+    <div id="player1" class="player"></div>
+    <div id="player2" class="player"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
