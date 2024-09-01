@@ -3,13 +3,15 @@ const socket = io();
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
 
-let currentPlayer = 'player1'; // Inicialize com o jogador atual
+let currentPlayer = 'player1'; // Começa com player1
 
+// Atualiza a posição de um jogador
 function movePlayer(player, x, y) {
     player.style.left = `${x}px`;
     player.style.top = `${y}px`;
 }
 
+// Move o jogador com base nas teclas pressionadas
 function movePlayerWithKeys(player, direction) {
     const step = 10; // Quantidade de pixels para cada movimento
     let currentX = parseInt(player.style.left || '0', 10);
@@ -34,6 +36,7 @@ function movePlayerWithKeys(player, direction) {
     socket.emit('move', { x: currentX, y: currentY, player: currentPlayer });
 }
 
+// Lida com eventos de teclado
 function onKeyDown(event) {
     if (currentPlayer === 'player1') {
         switch (event.key) {
@@ -68,6 +71,7 @@ function onKeyDown(event) {
     }
 }
 
+// Lida com eventos de movimento de toque
 function onTouchMove(event) {
     const touch = event.touches[0];
     const x = touch.clientX;
@@ -82,9 +86,11 @@ function onTouchMove(event) {
     }
 }
 
+// Adiciona ouvintes de eventos
 document.addEventListener('keydown', onKeyDown);
 document.addEventListener('touchmove', onTouchMove);
 
+// Atualiza a posição dos jogadores com base nas mensagens recebidas do servidor
 socket.on('move', (data) => {
     if (data.player === 'player1') {
         movePlayer(player1, data.x, data.y);
